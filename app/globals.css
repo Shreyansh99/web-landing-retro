@@ -1,0 +1,303 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=VT323&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display&display=swap');
+
+:root {
+  --foreground-rgb: 255, 255, 255;
+  --background-rgb: 34, 34, 34;
+  --accent-primary-rgb: 255, 107, 74;   /* Retro orange */
+  --accent-secondary-rgb: 255, 209, 102; /* Retro yellow */
+  --accent-tertiary-rgb: 6, 214, 160;   /* Retro mint */
+  --accent-dark-rgb: 7, 59, 76;         /* Dark blue-green */
+  --accent-light-rgb: 255, 240, 229;    /* Light cream */
+
+  /* Retro grid colors */
+  --grid-color: rgba(255, 107, 74, 0.3);
+  --grid-size: 30px;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: rgb(var(--background-rgb));
+  background-image:
+    linear-gradient(rgba(var(--accent-primary-rgb), 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(var(--accent-primary-rgb), 0.05) 1px, transparent 1px);
+  background-size: var(--grid-size) var(--grid-size);
+  overflow-x: hidden;
+  @apply dark font-body;
+  position: relative;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  @apply font-display;
+}
+
+p {
+  @apply font-body;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 12px;
+}
+
+::-webkit-scrollbar-track {
+  background: #222222;
+  border-left: 2px solid rgba(var(--accent-primary-rgb), 0.2);
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(var(--accent-primary-rgb), 0.6);
+  border: 2px solid #222222;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(var(--accent-primary-rgb), 0.8);
+}
+
+/* Selection color */
+::selection {
+  background-color: rgba(var(--accent-primary-rgb), 0.5);
+  color: white;
+}
+
+@layer components {
+  .btn-primary {
+    @apply bg-accent-primary text-white font-retro text-xs py-3 px-6 border-2 border-white shadow-[4px_4px_0px_0px_rgba(0,0,0,0.8)] hover:shadow-[2px_2px_0px_0px_rgba(0,0,0,0.8)] hover:translate-x-[2px] hover:translate-y-[2px] transition-all duration-200;
+  }
+
+  .btn-secondary {
+    @apply bg-accent-secondary text-dark-300 font-retro text-xs py-3 px-6 border-2 border-dark-300 shadow-[4px_4px_0px_0px_rgba(0,0,0,0.8)] hover:shadow-[2px_2px_0px_0px_rgba(0,0,0,0.8)] hover:translate-x-[2px] hover:translate-y-[2px] transition-all duration-200;
+  }
+
+  .btn-outline {
+    @apply bg-transparent border-2 border-accent-primary text-accent-primary font-retro text-xs py-3 px-6 shadow-[4px_4px_0px_0px_rgba(255,107,74,0.3)] hover:shadow-[2px_2px_0px_0px_rgba(255,107,74,0.3)] hover:translate-x-[2px] hover:translate-y-[2px] transition-all duration-200;
+  }
+
+  .btn-accent {
+    @apply bg-accent-tertiary text-dark-300 font-retro text-xs py-3 px-6 border-2 border-dark-300 shadow-[4px_4px_0px_0px_rgba(0,0,0,0.8)] hover:shadow-[2px_2px_0px_0px_rgba(0,0,0,0.8)] hover:translate-x-[2px] hover:translate-y-[2px] transition-all duration-200;
+  }
+
+  .btn-retro {
+    @apply relative overflow-hidden text-white font-retro text-xs py-3 px-6 border-2 border-white shadow-[4px_4px_0px_0px_rgba(0,0,0,0.8)] hover:shadow-[2px_2px_0px_0px_rgba(0,0,0,0.8)] hover:translate-x-[2px] hover:translate-y-[2px] transition-all duration-200;
+    background: repeating-linear-gradient(
+      45deg,
+      rgba(var(--accent-primary-rgb), 1),
+      rgba(var(--accent-primary-rgb), 1) 10px,
+      rgba(var(--accent-secondary-rgb), 1) 10px,
+      rgba(var(--accent-secondary-rgb), 1) 20px
+    );
+  }
+
+  @keyframes gradient-shift {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
+
+  .container-custom {
+    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+  }
+
+  .heading-xl {
+    @apply text-3xl md:text-4xl lg:text-5xl font-bold font-display tracking-wide leading-relaxed text-accent-primary;
+    text-shadow: 4px 4px 0px rgba(0,0,0,0.8);
+  }
+
+  .heading-lg {
+    @apply text-2xl md:text-3xl font-bold font-display tracking-wide leading-relaxed text-white;
+    text-shadow: 3px 3px 0px rgba(0,0,0,0.8);
+  }
+
+  .heading-md {
+    @apply text-xl md:text-2xl font-bold font-display tracking-wide leading-relaxed text-accent-secondary;
+    text-shadow: 2px 2px 0px rgba(0,0,0,0.8);
+  }
+
+  .heading-sm {
+    @apply text-lg md:text-xl font-bold font-display tracking-wide leading-relaxed text-accent-tertiary;
+    text-shadow: 2px 2px 0px rgba(0,0,0,0.8);
+  }
+
+  .subheading {
+    @apply text-lg md:text-xl font-heading font-medium tracking-wide text-white;
+  }
+
+  .body-large {
+    @apply text-lg font-body leading-relaxed;
+  }
+
+  .body-normal {
+    @apply text-base font-body leading-relaxed;
+  }
+
+  .caption {
+    @apply text-sm font-accent tracking-wide uppercase;
+  }
+
+  .card {
+    @apply bg-dark-100 p-6 border-2 border-white shadow-[8px_8px_0px_0px_rgba(0,0,0,0.8)] transition-all duration-300;
+  }
+
+  .card-hover {
+    @apply hover:shadow-[4px_4px_0px_0px_rgba(0,0,0,0.8)] hover:translate-x-[4px] hover:translate-y-[4px] transition-all duration-300;
+  }
+
+  .text-retro {
+    @apply font-retro text-accent-primary;
+    text-shadow: 2px 2px 0px rgba(0,0,0,0.8);
+  }
+
+  .text-retro-secondary {
+    @apply font-retro text-accent-secondary;
+    text-shadow: 2px 2px 0px rgba(0,0,0,0.8);
+  }
+
+  .text-retro-tertiary {
+    @apply font-retro text-accent-tertiary;
+    text-shadow: 2px 2px 0px rgba(0,0,0,0.8);
+  }
+
+  .retro-card {
+    @apply bg-dark-100 p-6 border-2 border-accent-primary shadow-[8px_8px_0px_0px_rgba(255,107,74,0.3)];
+  }
+
+  .retro-effect {
+    @apply border-2 border-accent-primary bg-dark-200 shadow-[4px_4px_0px_0px_rgba(255,107,74,0.3)];
+  }
+
+  .shimmer {
+    @apply relative overflow-hidden;
+    background-image: linear-gradient(90deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.05) 50%, rgba(255,255,255,0) 100%);
+    background-size: 200% 100%;
+    animation: shimmer 2s infinite;
+  }
+
+  .retro-blink {
+    animation: blink 1s steps(2, start) infinite;
+  }
+
+  .retro-scan {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .retro-scan::after {
+    content: "";
+    position: absolute;
+    top: -100%;
+    left: 0;
+    width: 100%;
+    height: 10px;
+    background: rgba(var(--accent-primary-rgb), 0.3);
+    animation: scan 3s linear infinite;
+  }
+
+  .pixel-border {
+    position: relative;
+    border: 2px solid white;
+    box-shadow: 4px 4px 0px 0px rgba(0,0,0,0.8);
+  }
+
+  .pixel-border::before {
+    content: "";
+    position: absolute;
+    top: -4px;
+    left: -4px;
+    right: -4px;
+    bottom: -4px;
+    border: 2px dashed rgba(var(--accent-primary-rgb), 0.5);
+    pointer-events: none;
+  }
+
+  @keyframes shimmer {
+    0% { background-position: -200% 0; }
+    100% { background-position: 200% 0; }
+  }
+
+  @keyframes blink {
+    to { visibility: hidden; }
+  }
+
+  @keyframes scan {
+    0% { top: -10px; }
+    100% { top: 100%; }
+  }
+}
+
+
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 0 0% 3.9%;
+    --card: 0 0% 100%;
+    --card-foreground: 0 0% 3.9%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 0 0% 3.9%;
+    --primary: 0 0% 9%;
+    --primary-foreground: 0 0% 98%;
+    --secondary: 0 0% 96.1%;
+    --secondary-foreground: 0 0% 9%;
+    --muted: 0 0% 96.1%;
+    --muted-foreground: 0 0% 45.1%;
+    --accent: 0 0% 96.1%;
+    --accent-foreground: 0 0% 9%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 0 0% 89.8%;
+    --input: 0 0% 89.8%;
+    --ring: 0 0% 3.9%;
+    --chart-1: 12 76% 61%;
+    --chart-2: 173 58% 39%;
+    --chart-3: 197 37% 24%;
+    --chart-4: 43 74% 66%;
+    --chart-5: 27 87% 67%;
+    --radius: 0.5rem;
+  }
+  .dark {
+    --background: 220 30% 3%;
+    --foreground: 210 20% 98%;
+    --card: 220 30% 5%;
+    --card-foreground: 210 20% 98%;
+    --popover: 220 30% 4%;
+    --popover-foreground: 210 20% 98%;
+    --primary: 215 100% 40%;
+    --primary-foreground: 210 20% 98%;
+    --secondary: 220 70% 45%;
+    --secondary-foreground: 210 20% 98%;
+    --muted: 220 30% 10%;
+    --muted-foreground: 210 20% 70%;
+    --accent: 215 100% 50%;
+    --accent-foreground: 210 20% 98%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 20% 98%;
+    --border: 220 30% 12%;
+    --input: 220 30% 12%;
+    --ring: 215 100% 40%;
+    --chart-1: 215 100% 40%;
+    --chart-2: 215 80% 50%;
+    --chart-3: 215 60% 60%;
+    --chart-4: 220 70% 45%;
+    --chart-5: 225 80% 40%;
+  }
+}
+
+
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
