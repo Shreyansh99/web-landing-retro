@@ -3,7 +3,7 @@
 import { motion } from 'framer-motion'
 import { FaWordpress, FaShopify, FaCode, FaServer, FaBuilding, FaUtensils, FaStore } from 'react-icons/fa'
 import { AnimatedButton } from '@/components/ui/animated-button'
-import { AnimatedCard } from '@/components/ui/animated-card'
+import { MotionCard } from '@/components/ui/animated-card'
 import { MessageSquare } from 'lucide-react'
 
 const services = [
@@ -105,7 +105,7 @@ export default function ServicesSection() {
               transition={{ duration: 0.5, delay: 0.1 }}
               viewport={{ once: true }}
             >
-              <AnimatedCard
+              <MotionCard
                 variant="deepBlue"
                 hover="glow"
                 className="h-full p-6"
@@ -125,7 +125,7 @@ export default function ServicesSection() {
                     {service.category}
                   </span>
                 </div>
-              </AnimatedCard>
+              </MotionCard>
             </motion.div>
           ))}
         </div>
