@@ -25,7 +25,7 @@ export default function CTASection({ title, description, buttonText, buttonLink 
         transition={{
           duration: 8,
           repeat: Infinity,
-          repeatType: "reverse",
+          repeatType: "reverse" as const,
         }}
       />
 
@@ -38,7 +38,7 @@ export default function CTASection({ title, description, buttonText, buttonLink 
         transition={{
           duration: 10,
           repeat: Infinity,
-          repeatType: "reverse",
+          repeatType: "reverse" as const,
         }}
       />
 

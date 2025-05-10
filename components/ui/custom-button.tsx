@@ -56,7 +56,7 @@ export interface CustomButtonProps
 
 const CustomButton = React.forwardRef<HTMLButtonElement, CustomButtonProps>(
   ({ className, variant, size, animation, asChild = false, children, href, icon, iconPosition = 'left', ...props }, ref) => {
-    
+
     const getAnimationProps = () => {
       switch (animation) {
         case 'bounce':
@@ -71,9 +71,9 @@ const CustomButton = React.forwardRef<HTMLButtonElement, CustomButtonProps>(
           }
         case 'shine':
           return {
-            whileHover: { 
+            whileHover: {
               backgroundPosition: ['0% 50%', '100% 50%', '0% 50%'],
-              transition: { 
+              transition: {
                 duration: 3,
                 repeat: Infinity,
                 ease: 'linear'
@@ -88,7 +88,7 @@ const CustomButton = React.forwardRef<HTMLButtonElement, CustomButtonProps>(
           }
       }
     }
-    
+
     const content = (
       <>
         {icon && iconPosition === 'left' && <span className="mr-2">{icon}</span>}
@@ -96,8 +96,11 @@ const CustomButton = React.forwardRef<HTMLButtonElement, CustomButtonProps>(
         {icon && iconPosition === 'right' && <span className="ml-2">{icon}</span>}
       </>
     )
-    
+
     if (href) {
+      // We need to be careful with event handlers when using motion components
+      // Only pass specific props that we know are safe
+
       return (
         <motion.a
           href={href}
@@ -108,12 +111,35 @@ const CustomButton = React.forwardRef<HTMLButtonElement, CustomButtonProps>(
         </motion.a>
       )
     }
-    
+
+    // Instead of spreading all props, we'll extract only the ones we need
+    const {
+      onClick,
+      disabled,
+      type,
+      name,
+      value,
+      id,
+      form,
+      tabIndex,
+      autoFocus,
+      title
+    } = props;
+
     return (
       <motion.button
         className={cn(buttonVariants({ variant, size, animation, className }))}
         ref={ref}
-        {...props}
+        onClick={onClick}
+        disabled={disabled}
+        type={type}
+        name={name}
+        value={value}
+        id={id}
+        form={form}
+        tabIndex={tabIndex}
+        autoFocus={autoFocus}
+        title={title}
         {...getAnimationProps()}
       >
         {content}

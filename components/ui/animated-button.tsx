@@ -57,7 +57,7 @@ export interface AnimatedButtonProps
 
 const AnimatedButton = React.forwardRef<HTMLButtonElement, AnimatedButtonProps>(
   ({ className, variant, size, animation, asChild = false, children, href, icon, iconPosition = 'left', ...props }, ref) => {
-    
+
     const getAnimationProps = () => {
       switch (animation) {
         case 'bounce':
@@ -67,7 +67,7 @@ const AnimatedButton = React.forwardRef<HTMLButtonElement, AnimatedButtonProps>(
           }
         case 'ripple':
           return {
-            whileTap: { 
+            whileTap: {
               scale: 0.97,
               transition: { duration: 0.1 }
             },
@@ -77,16 +77,16 @@ const AnimatedButton = React.forwardRef<HTMLButtonElement, AnimatedButtonProps>(
           }
         case 'glow':
           return {
-            whileHover: { 
+            whileHover: {
               boxShadow: [
                 '0 0 5px rgba(0, 102, 204, 0.5)',
                 '0 0 20px rgba(0, 102, 204, 0.5)',
                 '0 0 5px rgba(0, 102, 204, 0.5)'
               ],
-              transition: { 
+              transition: {
                 duration: 1.5,
                 repeat: Infinity,
-                repeatType: 'reverse'
+                repeatType: 'reverse' as const
               }
             }
           }
@@ -101,7 +101,7 @@ const AnimatedButton = React.forwardRef<HTMLButtonElement, AnimatedButtonProps>(
           }
       }
     }
-    
+
     const content = (
       <>
         {icon && iconPosition === 'left' && <span className="mr-2">{icon}</span>}
@@ -109,8 +109,11 @@ const AnimatedButton = React.forwardRef<HTMLButtonElement, AnimatedButtonProps>(
         {icon && iconPosition === 'right' && <span className="ml-2">{icon}</span>}
       </>
     )
-    
+
     if (href) {
+      // We need to be careful with event handlers when using motion components
+      // Only pass specific props that we know are safe
+
       return (
         <motion.a
           href={href}
@@ -121,12 +124,35 @@ const AnimatedButton = React.forwardRef<HTMLButtonElement, AnimatedButtonProps>(
         </motion.a>
       )
     }
-    
+
+    // Instead of spreading all props, we'll extract only the ones we need
+    const {
+      onClick,
+      disabled,
+      type,
+      name,
+      value,
+      id,
+      form,
+      tabIndex,
+      autoFocus,
+      title
+    } = props;
+
     return (
       <motion.button
         className={cn(buttonVariants({ variant, size, animation, className }))}
         ref={ref}
-        {...props}
+        onClick={onClick}
+        disabled={disabled}
+        type={type}
+        name={name}
+        value={value}
+        id={id}
+        form={form}
+        tabIndex={tabIndex}
+        autoFocus={autoFocus}
+        title={title}
         {...getAnimationProps()}
       >
         {content}

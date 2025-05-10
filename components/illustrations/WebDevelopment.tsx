@@ -29,7 +29,7 @@ export default function WebDevelopment({ className = '' }: WebDevelopmentProps) 
       transition: {
         duration: 4,
         repeat: Infinity,
-        repeatType: "reverse",
+        repeatType: "reverse" as const,
         ease: "easeInOut",
       },
     },
@@ -113,13 +113,13 @@ export default function WebDevelopment({ className = '' }: WebDevelopmentProps) 
         r="30"
         fill="#ddd6fe"
         initial={{ opacity: 0 }}
-        animate={{ 
+        animate={{
           opacity: 1,
           y: [-5, 5, -5],
         }}
-        transition={{ 
+        transition={{
           opacity: { duration: 0.5, delay: 0.8 },
-          y: { duration: 3, repeat: Infinity, repeatType: "reverse", ease: "easeInOut" }
+          y: { duration: 3, repeat: Infinity, repeatType: "reverse" as const, ease: "easeInOut" }
         }}
       />
 
@@ -131,15 +131,15 @@ export default function WebDevelopment({ className = '' }: WebDevelopmentProps) 
         rx="10"
         fill="#bae6fd"
         initial={{ opacity: 0, rotate: -10 }}
-        animate={{ 
+        animate={{
           opacity: 1,
           rotate: 0,
           y: [0, 8, 0],
         }}
-        transition={{ 
+        transition={{
           opacity: { duration: 0.5, delay: 1 },
           rotate: { duration: 0.5, delay: 1 },
-          y: { duration: 4, delay: 1, repeat: Infinity, repeatType: "reverse", ease: "easeInOut" }
+          y: { duration: 4, delay: 1, repeat: Infinity, repeatType: "reverse" as const, ease: "easeInOut" }
         }}
       />
 

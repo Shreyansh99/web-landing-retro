@@ -97,7 +97,7 @@ export default function Hero({ subtitle, ctaText, ctaLink }: HeroProps) {
               transition={{
                 duration: 5,
                 repeat: Infinity,
-                repeatType: "reverse"
+                repeatType: "reverse" as const
               }}
             >
               <div className="pixel-border p-4 bg-dark-100">
@@ -112,7 +112,7 @@ export default function Hero({ subtitle, ctaText, ctaLink }: HeroProps) {
                   transition={{
                     duration: 3,
                     repeat: Infinity,
-                    repeatType: "reverse",
+                    repeatType: "reverse" as const,
                     delay: 1
                   }}
                 >
@@ -127,7 +127,7 @@ export default function Hero({ subtitle, ctaText, ctaLink }: HeroProps) {
                   transition={{
                     duration: 4,
                     repeat: Infinity,
-                    repeatType: "reverse",
+                    repeatType: "reverse" as const,
                     delay: 0.5
                   }}
                 >
@@ -142,7 +142,7 @@ export default function Hero({ subtitle, ctaText, ctaLink }: HeroProps) {
                   transition={{
                     duration: 3.5,
                     repeat: Infinity,
-                    repeatType: "reverse",
+                    repeatType: "reverse" as const,
                     delay: 1.5
                   }}
                 >
@@ -157,7 +157,7 @@ export default function Hero({ subtitle, ctaText, ctaLink }: HeroProps) {
                   transition={{
                     duration: 4.5,
                     repeat: Infinity,
-                    repeatType: "reverse",
+                    repeatType: "reverse" as const,
                     delay: 2
                   }}
                 >
