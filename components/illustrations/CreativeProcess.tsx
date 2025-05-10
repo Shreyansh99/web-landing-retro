@@ -29,7 +29,7 @@ export default function CreativeProcess({ className = '' }: CreativeProcessProps
       transition: {
         duration: 4,
         repeat: Infinity,
-        repeatType: "reverse",
+        repeatType: "reverse" as const,
         ease: "easeInOut",
       },
     },
@@ -99,7 +99,7 @@ export default function CreativeProcess({ className = '' }: CreativeProcessProps
         strokeWidth="3"
         initial={{ opacity: 0, rotate: 0 }}
         animate={{ opacity: 1, rotate: 360 }}
-        transition={{ 
+        transition={{
           opacity: { duration: 0.5, delay: 0.8 },
           rotate: { duration: 10, repeat: Infinity, ease: "linear" }
         }}
@@ -114,7 +114,7 @@ export default function CreativeProcess({ className = '' }: CreativeProcessProps
         strokeWidth="3"
         initial={{ opacity: 0, rotate: 0 }}
         animate={{ opacity: 1, rotate: -360 }}
-        transition={{ 
+        transition={{
           opacity: { duration: 0.5, delay: 0.8 },
           rotate: { duration: 10, repeat: Infinity, ease: "linear" }
         }}
